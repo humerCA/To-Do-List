@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Login from "../SigningOptions/LoginForm";
 import TextInput from "../UIComponents/TextInput";
 
 const SignUp = (props) => {

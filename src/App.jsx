@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "./Components/Nav";
 import Body from "./Components/Body";
-
-// React Hooks
-import { useEffect, useState } from "react";
+import LoginForm from "./Components/SigningOptions/LoginForm";
 
 function App() {
   return (

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import SignUp from "./SigningOptions/SignUp";
 import LoginForm from "./SigningOptions/LoginForm";
+import SignUp from "./SigningOptions/SignUp";
 
 const Nav = () => {
   const [showSignUp, setSignUp] = useState(false);
-  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   return (
     <>
@@ -28,8 +28,8 @@ const Nav = () => {
         <div className="mr-10 hidden flex-col content-center items-end md:flex">
           <div className="flex flex-row items-center justify-between px-10 font-medium">
             <button
-              onClick={() => setShowLoginForm(!showLoginForm)}
               className="flex flex-row items-center justify-between"
+              onClick={() => setShowLogin(!showLogin)}
             >
               <img src="src/Images/user-icon.png" className="h-8" />
               <span className="p-4">Login</span>
@@ -44,13 +44,16 @@ const Nav = () => {
         </div>
       </nav>
       {showMenu && (
-        <showMenu
+        <div
           className={`absolute z-50 w-full border-2 bg-gray-300 p-2 py-4 transition-all duration-500 ease-in ${
-            showMenu ? "top-16" : "top-[-490px]"
-          } `}
+            showMenu ? "top-16" : null
+          } md:hidden`}
         >
           <div className="align-center flex flex-col items-center justify-center text-lg font-bold">
-            <button className="flex flex-row items-center justify-between py-1 px-20 uppercase">
+            <button
+              className="flex flex-row items-center justify-between py-1 px-20 uppercase"
+              onClick={() => setShowLogin(!showLogin)}
+            >
               Login
             </button>
             <button
@@ -60,9 +63,9 @@ const Nav = () => {
               Sign up
             </button>
           </div>
-        </showMenu>
+        </div>
       )}
-      {showSignIn ? <LoginForm setShowModal={setShowModal} /> : null}
+      {showLogin ? <LoginForm setShowLogin={setShowLogin} /> : null}
       {showSignUp ? <SignUp setSignUp={setSignUp} /> : null}
     </>
   );
