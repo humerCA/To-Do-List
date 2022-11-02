@@ -20,7 +20,7 @@ const LoginForm = (props) => {
   return (
     <>
       <div className="absolute inset-0 z-50 m-auto box-border flex select-none justify-center bg-gray-200 bg-opacity-70 ">
-        <form className="m-auto flex flex-row justify-end">
+        <form className="relative m-auto flex flex-row justify-end">
           <button
             type="button"
             className="absolute z-30 flex flex-row justify-end px-5 py-3 text-lg font-bold text-black"
@@ -45,7 +45,7 @@ const LoginForm = (props) => {
               className="relative hidden h-full w-full bg-white bg-auto md:flex md:object-contain md:px-14"
             />
             <svg
-              className="absolute bottom-28 z-10 max-w-md object-contain p-1 py-3 "
+              className="absolute bottom-0 z-10 max-w-md object-contain p-1 "
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1440 320"
             >
@@ -61,7 +61,7 @@ const LoginForm = (props) => {
               Welcome Back!
             </span>
             <span className="flex justify-center p-6 text-3xl font-bold text-blue-500">
-              SIGN IN
+              LOG IN
             </span>
             <TextInput
               autoComplete="off"

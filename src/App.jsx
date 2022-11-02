@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Nav from "./Components/Nav";
-import Body from "./Components/Body";
-import LoginForm from "./Components/SigningOptions/LoginForm";
+import { Route, Routes } from "react-router-dom";
+import About from "./Components/Pages/About";
+import Home from "./Components/Pages/Home";
 
 function App() {
   return (
-    <>
-      <div className="m-0 flex h-screen flex-col p-0">
-        <Nav />
-        <Body />
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} exact />
+      <Route path="/about" element={<About />} exact>
+        <Route path="company" element={<h1>Company</h1>} exact />
+      </Route>
+    </Routes>
   );
 }
 
