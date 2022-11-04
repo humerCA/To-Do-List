@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import TextInput from "../UIComponents/TextInput";
+import { Link } from "react-router-dom";
+import LoginImage from "../../Images/Login.png";
 
 const LoginForm = (props) => {
   const [formLoginData, setformLoginData] = useState({
@@ -19,11 +21,11 @@ const LoginForm = (props) => {
 
   return (
     <>
-      <div className="absolute inset-0 z-50 m-auto box-border flex select-none justify-center bg-gray-200 bg-opacity-70 ">
+      <div className="absolute inset-0 z-50 m-auto box-border flex select-none justify-center bg-gray-800 bg-opacity-70 ">
         <form className="relative m-auto flex flex-row justify-end">
           <button
             type="button"
-            className="absolute z-30 flex flex-row justify-end px-5 py-3 text-lg font-bold text-black"
+            className="absolute z-30 flex flex-row justify-end px-5 py-3 text-lg font-bold text-black dark:text-gray-50"
             onClick={() => setShowLogin(false)}
           >
             X
@@ -40,9 +42,9 @@ const LoginForm = (props) => {
               ></path>
             </svg>
             <img
-              src="src/Images/Login.png"
+              src={LoginImage}
               alt="SignUp image"
-              className="relative hidden h-full w-full bg-white bg-auto md:flex md:object-contain md:px-14"
+              className="relative hidden h-full w-full bg-white bg-auto shadow-sm dark:bg-gray-700 md:flex md:object-contain md:px-14"
             />
             <svg
               className="absolute bottom-0 z-10 max-w-md object-contain p-1 "
@@ -55,9 +57,9 @@ const LoginForm = (props) => {
               ></path>
             </svg>
           </div>
-          <div className="z-20 m-auto flex flex-col rounded-md bg-white py-20 px-20 shadow-md sm:px-24 md:px-16">
+          <div className="z-20 m-auto flex flex-col rounded-md bg-white py-20 px-20 shadow-md dark:bg-gray-700 sm:px-24 md:px-16">
             <div className="relative m-auto flex flex-row items-center justify-center"></div>
-            <span className="mt-0 flex justify-center px-6 text-xl font-bold text-black">
+            <span className="mt-0 flex justify-center px-6 text-xl font-bold text-black dark:text-gray-50">
               Welcome Back!
             </span>
             <span className="flex justify-center p-6 text-3xl font-bold text-blue-500">
@@ -82,14 +84,16 @@ const LoginForm = (props) => {
               onChange={handleChange}
               value={formLoginData.password}
             />
-            <button
-              placeholder="Submit"
-              name="submit"
-              onClick={() => setShowLogin(false)}
-              className="mt-5 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2"
-            >
-              Login
-            </button>
+            <Link to="/main">
+              <button
+                placeholder="Submit"
+                name="submit"
+                onClick={() => setShowLogin(false)}
+                className="mt-5 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2"
+              >
+                Login
+              </button>
+            </Link>
           </div>
         </form>
       </div>

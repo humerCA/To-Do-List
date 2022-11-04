@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import TextInput from "../UIComponents/TextInput";
+import SignUpImage from "../../Images/SignUp.jpg";
+import TodoListIcon from "../../Images/to-do-list.png";
 
 const SignUp = (props) => {
   const [formData, setformData] = useState({
@@ -21,26 +23,26 @@ const SignUp = (props) => {
 
   return (
     <>
-      <div className="absolute inset-0 z-50 m-0 box-border flex select-none justify-center bg-gray-200 bg-opacity-70 ">
+      <div className="absolute inset-0 z-50 m-0 box-border flex select-none justify-center bg-gray-800 bg-opacity-70 ">
         <form className="m-auto flex flex-row justify-end">
           <button
             type="button"
-            className=" absolute flex flex-row justify-end px-5 py-3 text-lg font-bold text-black"
+            className=" absolute flex flex-row justify-end px-5 py-3 text-lg font-bold text-black dark:text-gray-50"
             onClick={() => setSignUp(false)}
           >
             X
           </button>
           <div className="max-w-md ">
             <img
-              src="src/Images/SignUp.jpg"
+              src={SignUpImage}
               alt="SignUp image"
-              className="hidden h-full w-full bg-white bg-auto object-cover md:flex md:object-cover"
+              className="hidden h-full w-full rounded-md bg-white bg-auto object-cover p-2 dark:bg-gray-700 md:flex md:object-cover"
             />
           </div>
-          <div className="m-0 flex flex-col rounded-md bg-white px-20 py-10 shadow-md sm:px-20 md:px-14 ">
+          <div className="m-0 flex flex-col rounded-md bg-white px-20 py-10 shadow-md dark:bg-gray-700 sm:px-20 md:px-14 ">
             <div className="relative m-auto flex flex-row items-center justify-center">
-              <img src="src/Images/to-do-list.png" className="h-8 w-8" />
-              <span className="pl-2 text-xl font-black uppercase">
+              <img src={TodoListIcon} className="h-8 w-8" />
+              <span className="pl-2 text-xl font-black uppercase dark:text-gray-50">
                 To-Do List
               </span>
             </div>

@@ -6,13 +6,13 @@ const Body = () => {
   const [showSignUp, setSignUp] = useState(false);
   return (
     <>
-      <section className="relative z-0 flex h-full  flex-1 select-none flex-col bg-gray-100">
+      <section className="relative z-0 flex h-full select-none flex-col bg-gray-100 dark:bg-gray-800">
         <img
           src="src/Images/background.jpg"
           className="absolute h-full w-full bg-auto object-cover opacity-20"
         />
         <div className="relative flex h-full flex-col items-center justify-center p-20 text-center">
-          <h1 className="text-3xl font-black text-gray-800 sm:text-4xl md:text-5xl">
+          <h1 className="text-3xl font-black text-gray-800 dark:text-gray-100 sm:text-4xl md:text-5xl">
             Welcome to To-Do List
           </h1>
           <button
