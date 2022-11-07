@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import TextInput from "../UIComponents/TextInput";
 import { Link } from "react-router-dom";
 import LoginImage from "../../Images/Login.png";
+import { UserContext } from "../../context/AuthContext";
 
 const LoginForm = (props) => {
+  const { setUserData } = useContext(UserContext);
+
   const [formLoginData, setformLoginData] = useState({
     username: "",
     password: "",
@@ -19,6 +22,14 @@ const LoginForm = (props) => {
     }));
   };
 
+  const handleLogin = () => {
+    setShowLogin(false);
+    setUserData({
+      id: 1,
+      username: "admin",
+    });
+  };
+
   return (
     <>
       <div className="absolute inset-0 z-50 m-auto box-border flex select-none justify-center bg-gray-800 bg-opacity-70 ">
@@ -32,7 +43,7 @@ const LoginForm = (props) => {
           </button>
           <div className="m-0 hidden max-w-md shadow md:flex">
             <svg
-              className="absolute z-10 max-w-md	object-cover p-1"
+              className="absolute left-2 z-10 max-w-md	object-cover p-1"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1440 320"
             >
@@ -44,10 +55,10 @@ const LoginForm = (props) => {
             <img
               src={LoginImage}
               alt="SignUp image"
-              className="relative hidden h-full w-full bg-white bg-auto shadow-sm dark:bg-gray-700 md:flex md:object-contain md:px-14"
+              className="relative -right-2 hidden h-full w-full rounded-lg bg-white bg-auto shadow-sm dark:bg-gray-600 md:flex md:object-contain md:px-14"
             />
             <svg
-              className="absolute bottom-0 z-10 max-w-md object-contain p-1 "
+              className="absolute left-2 bottom-0 z-10 max-w-md object-contain p-1 "
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1440 320"
             >
@@ -57,7 +68,7 @@ const LoginForm = (props) => {
               ></path>
             </svg>
           </div>
-          <div className="z-20 m-auto flex flex-col rounded-md bg-white py-20 px-20 shadow-md dark:bg-gray-700 sm:px-24 md:px-16">
+          <div className="z-20 m-auto flex flex-col rounded-md bg-white py-20 px-20 shadow-md dark:bg-gray-600 sm:px-24 md:px-16">
             <div className="relative m-auto flex flex-row items-center justify-center"></div>
             <span className="mt-0 flex justify-center px-6 text-xl font-bold text-black dark:text-gray-50">
               Welcome Back!
@@ -88,7 +99,7 @@ const LoginForm = (props) => {
               <button
                 placeholder="Submit"
                 name="submit"
-                onClick={() => setShowLogin(false)}
+                onClick={handleLogin}
                 className="mt-5 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2"
               >
                 Login

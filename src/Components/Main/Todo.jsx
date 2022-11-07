@@ -7,8 +7,8 @@ import SearchBar from "../UIComponents/SearchBar";
 const Todo = () => {
   return (
     <>
-      <div className="inset-0 h-full bg-gray-100 bg-auto dark:bg-gray-700">
-        <div className="h-full dark:bg-gray-700">
+      <div className="h-screen bg-gray-100  bg-auto dark:bg-gray-700 xl:h-screen">
+        <div className="h-screen dark:bg-gray-700">
           <Nav />
           <div className="my-5">
             <SearchBar />
@@ -25,7 +25,7 @@ const Todo = () => {
               // value={formLoginData.username}
             />
           </div>
-          <div className="my-2 grid grid-flow-row items-center gap-5 px-10 pb-10 sm:grid-cols-2 lg:grid-cols-3 lg:px-10">
+          <div className="grid gap-10 px-10 pb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             <Cards />
             <Cards />
             <Cards />

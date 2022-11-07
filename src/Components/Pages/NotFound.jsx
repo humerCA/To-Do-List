@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <div className="relative inset-0 flex h-screen w-full flex-col bg-[#18242b] text-white">
+    <div className="relative inset-0 flex h-screen w-full flex-col bg-white dark:bg-[#18242b] dark:text-white md:w-auto">
       <span className="mt-10 ml-10 text-8xl font-black text-[#e6ac4a] md:ml-20 ">
         404
       </span>
@@ -21,7 +21,7 @@ const NotFound = () => {
         Back
       </Link>
       <img
-        className="absolute bottom-0 z-0 m-auto flex max-h-screen w-full justify-end object-cover"
+        className="absolute bottom-0 right-0 z-0 m-auto flex h-auto w-auto object-cover md:w-2/3"
         src={ErrorPage}
         alt=""
       />
