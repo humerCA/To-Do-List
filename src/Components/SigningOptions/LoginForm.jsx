@@ -1,11 +1,38 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TextInput from "../UIComponents/TextInput";
 import { Link } from "react-router-dom";
 import LoginImage from "../../Images/Login.png";
 import { UserContext } from "../../context/AuthContext";
+// import axios from "../../api/axios";
+import { usersAPI } from "../../api/axios";
 
 const LoginForm = (props) => {
   const { setUserData } = useContext(UserContext);
+  const [post, setPost] = useState([]);
+  const { login, setLogin } = useState([]);
+
+  // API
+  const userList = async () => {
+    const response = await usersAPI.get("/get-users");
+    setPost(response?.data);
+  };
+
+  useEffect(() => {
+    console.log(post);
+  }, [post]);
+
+  // const userLogin = async () => {
+  //   const loginData = { username: "roy1234", password: "1234" };
+  //   const response = await usersAPI
+  //     .post("/login", loginData)
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //       alert(response.errors);
+  //     });
+  // };
 
   const [formLoginData, setformLoginData] = useState({
     username: "",
@@ -22,12 +49,19 @@ const LoginForm = (props) => {
     }));
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     setShowLogin(false);
-    setUserData({
-      id: 1,
-      username: "admin",
-    });
+
+    setUserData({ username: "roy123", password: "1234" });
+
+    const response = await usersAPI.post("/login", userData);
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    //   alert(response.errors);
+    // });
   };
 
   return (

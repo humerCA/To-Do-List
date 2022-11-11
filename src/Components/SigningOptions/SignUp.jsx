@@ -32,14 +32,14 @@ const SignUp = (props) => {
           >
             X
           </button>
-          <div className="sm:max-w-sm md:max-w-md">
+          <div className="z-0 sm:max-w-sm md:max-w-md">
             <img
               src={SignUpImage}
               alt="SignUp image"
-              className="z-0 hidden h-full w-full rounded-md bg-white bg-auto object-cover p-2 dark:bg-gray-600 md:flex md:object-cover"
+              className="z-0 ml-2 hidden h-full w-full rounded-md bg-white bg-auto object-cover p-2 dark:bg-gray-600 md:flex md:object-cover"
             />
           </div>
-          <div className="z-20 m-0 flex flex-col rounded-md bg-white px-20 py-10 shadow-md dark:bg-gray-600 sm:px-20 md:px-14 ">
+          <div className="z-30 m-0 flex flex-col rounded-lg bg-white px-20 py-10 shadow-md shadow-gray-800 dark:bg-gray-600 sm:px-20 md:px-14 ">
             <div className="relative m-auto flex flex-row items-center justify-center">
               <img src={TodoListIcon} className="h-8 w-8" />
               <span className="pl-2 text-xl font-black uppercase dark:text-gray-50">

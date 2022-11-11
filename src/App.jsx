@@ -5,6 +5,7 @@ import Home from "./Components/Pages/Home";
 import Todo from "./Components/Main/Todo";
 import NotFound from "./Components/Pages/NotFound";
 import AuthContext from "./context/AuthContext";
+import LoginForm from "./Components/SigningOptions/LoginForm";
 
 function App() {
   return (

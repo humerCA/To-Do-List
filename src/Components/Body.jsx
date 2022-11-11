@@ -21,7 +21,12 @@ const Body = () => {
           >
             GET STARTED
           </button>
-          <Link to="/about">About</Link>
+          <Link
+            className="absolute mt-96 text-2xl font-bold underline dark:text-neutral-300 dark:hover:text-white"
+            to="/about"
+          >
+            About
+          </Link>
         </div>
       </section>
       <footer className="flex h-6 select-none flex-col items-end justify-center bg-yellow-400 px-5 text-sm">
