@@ -14,7 +14,7 @@ const Cards = () => {
             </span>
             <figcaption className="rounded-full font-semibold">
               <div className="text-blue-500">Type</div>
-              <div className="text-gray-500">To-do List "1{Number}"</div>
+              <div className="text-gray-500">To-do List "1"</div>
             </figcaption>
           </div>
         </figure>

@@ -1,69 +1,73 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 import TextInput from "../UIComponents/TextInput";
 import { Link } from "react-router-dom";
 import LoginImage from "../../Images/Login.png";
 import { UserContext } from "../../context/AuthContext";
-// import axios from "../../api/axios";
-import { usersAPI } from "../../api/axios";
+// import { usersAPI } from "../../api/axios";
 
 const LoginForm = (props) => {
-  const { setUserData } = useContext(UserContext);
+  const inputRef = useRef();
+  const { userData, setUserData, user, setUser, pass, setPass } =
+    useContext(UserContext);
   const [post, setPost] = useState([]);
-  const { login, setLogin } = useState([]);
+  const [error, setError] = useState([]);
+  const { setShowLogin } = props;
 
-  // API
+  // Users API
   const userList = async () => {
     const response = await usersAPI.get("/get-users");
     setPost(response?.data);
   };
 
+  // Form
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setUserData((prevUserData) => ({
+  //     ...prevUserData,
+  //     [name]: value,
+  //   }));
+  // };
+
+  // Login API
   useEffect(() => {
+    // const handleSubmit = async (e) => {
+    //   e.preventDefault();
+    //   setShowLogin(false);
+    //   const userData = { username: "roy123", password: "12345" };
+    //   // console.log(userData);
+    //   const response = await usersAPI
+    //     .post("/login", userData)
+    handleSubmit({
+      username: "roy123",
+      password: "1234",
+    });
+
     console.log(post);
   }, [post]);
 
-  // const userLogin = async () => {
-  //   const loginData = { username: "roy1234", password: "1234" };
-  //   const response = await usersAPI
-  //     .post("/login", loginData)
-  //     .then(function (response) {
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //       alert(response.errors);
-  //     });
-  // };
-
-  const [formLoginData, setformLoginData] = useState({
-    username: "",
-    password: "",
-  });
-
-  const { setShowLogin } = props;
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setformLoginData((prevFormLoginData) => ({
-      ...prevFormLoginData,
-      [name]: value,
-    }));
+  const handleSubmit = async (user) => {
+    // user.preventDefault();
+    fetch("http://10.10.10.4:8000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("Could not fetch the data of the API");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setUserData(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   };
-
-  const handleLogin = async () => {
-    setShowLogin(false);
-
-    setUserData({ username: "roy123", password: "1234" });
-
-    const response = await usersAPI.post("/login", userData);
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    //   alert(response.errors);
-    // });
-  };
-
   return (
     <>
       <div className="absolute inset-0 z-50 m-auto box-border flex select-none justify-center bg-gray-800 bg-opacity-70 ">
@@ -111,29 +115,34 @@ const LoginForm = (props) => {
               LOG IN
             </span>
             <TextInput
+              required
               autoComplete="off"
               type="text"
               label="Username"
               name="username"
               htmlFor="username"
               placeholder="Username"
-              onChange={handleChange}
-              value={formLoginData.username}
+              // onChange={handleChange}
+              value={handleSubmit.username}
             />
             <TextInput
+              required
+              autoComplete="off"
               type="password"
               label="Password"
               name="password"
               htmlFor="password"
               placeholder="Password"
-              onChange={handleChange}
-              value={formLoginData.password}
+              // onChange={handleChange}
+              // value={name}
             />
-            <Link to="/main">
+            {error && <div>Please enter valid account</div>}
+            <Link to={{ pathname: "/main", state: { from: userData } }}>
               <button
                 placeholder="Submit"
+                onClick={() => setShowLogin(false)}
+                onSubmit={handleSubmit}
                 name="submit"
-                onClick={handleLogin}
                 className="mt-5 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2"
               >
                 Login

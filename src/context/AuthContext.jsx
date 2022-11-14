@@ -4,6 +4,8 @@ import { useState } from "react";
 export const UserContext = createContext(null);
 const AuthContext = ({ children }) => {
   const [userData, setUserData] = useState(null);
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
   const [darkMode, setDarkMode] = useState("light");
   const [showSignUp, setSignUp] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
@@ -13,6 +15,10 @@ const AuthContext = ({ children }) => {
       value={{
         userData,
         setUserData,
+        user,
+        setUser,
+        pass,
+        setPass,
         darkMode,
         setDarkMode,
         showSignUp,

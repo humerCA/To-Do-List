@@ -22,7 +22,7 @@ const Nav = () => {
     setShowMenu,
   } = useContext(UserContext);
 
-  console.log(userData);
+  // console.log(userData);
 
   const handleSwitch = () => {
     if (darkMode === "light") {

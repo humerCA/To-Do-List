@@ -3,11 +3,8 @@ import Nav from "../Nav";
 import Cards from "../UIComponents/Cards";
 import TextInput from "../UIComponents/TextInput";
 import SearchBar from "../UIComponents/SearchBar";
-import { useState } from "react";
 
 const Todo = () => {
-  const [todo, setTodo] = useState({});
-
   return (
     <>
       <div className="xl:h-scree  h-full bg-gray-100 bg-auto dark:bg-gray-700">
@@ -34,6 +31,7 @@ const Todo = () => {
             </button>
           </div>
           <div className="grid gap-10 px-10 pb-10 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+            <Cards />
             <Cards />
             <Cards />
             <Cards />
