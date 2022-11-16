@@ -1,6 +1,6 @@
 import React from "react";
-import ErrorPage from "../../Images/404.png";
 import { Link } from "react-router-dom";
+import ErrorPage from "../Images/404.png";
 
 const NotFound = () => {
   return (

@@ -1,8 +1,16 @@
-// import axios from "axios";
+import axios from "axios";
 
-// export const usersAPI = axios.create({
-//     baseURL: 'http://10.10.10.4:8000/api'
-// })
+const Base_URL = 'http://10.10.10.4:8000/api'
+
+export default axios.create({
+    baseURL: Base_URL,
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept' : ' application/json'
+    }
+})
+
+
 
 // usersAPI.interceptors.request.use(
 //     config => {

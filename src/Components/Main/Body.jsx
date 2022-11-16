@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import SignUp from "./SigningOptions/SignUp";
+import SignUp from "../SigningOptions/SignUp";
 
 const Body = () => {
   const [showSignUp, setSignUp] = useState(false);

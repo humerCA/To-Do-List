@@ -1,12 +1,15 @@
-import React, { useState, useContext } from "react";
-import LoginForm from "./SigningOptions/LoginForm";
-import SignUp from "./SigningOptions/SignUp";
-import TodoListIcon from "../Images/to-do-list.png";
-import UserIcon from "../Images/user-icon.png";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../context/AuthContext";
-import Light from "../Images/Light.png";
-import Night from "../Images/Night.png";
+import { UserContext } from "../../Context/AuthContext";
+//Signing Options
+import LoginForm from "../SigningOptions/LoginForm";
+import SignUp from "../SigningOptions/SignUp";
+//Images
+import TodoListIcon from "../../Images/to-do-list.png";
+import UserIcon from "../../Images/user-icon.png";
+//Dark Mode
+import Light from "../../Images/Light.png";
+import Night from "../../Images/Night.png";
 
 const Nav = () => {
   const {
@@ -21,8 +24,6 @@ const Nav = () => {
     showMenu,
     setShowMenu,
   } = useContext(UserContext);
-
-  // console.log(userData);
 
   const handleSwitch = () => {
     if (darkMode === "light") {
@@ -103,7 +104,7 @@ const Nav = () => {
                 <span className="p-4 dark:text-gray-50">Login</span>
               </button>
               <button
-                className="relative ml-10 rounded bg-yellow-400 py-1 px-4 font-bold text-gray-800 hover:bg-yellow-500 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-opacity-80 focus:ring-offset-2"
+                className="relative ml-5 rounded bg-yellow-400 py-1 px-4 font-bold text-gray-800 hover:bg-yellow-500 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-opacity-80 focus:ring-offset-2"
                 onClick={() => setSignUp(true)}
               >
                 Sign up
@@ -129,9 +130,7 @@ const Nav = () => {
 
               <button className="ml-10 flex flex-row items-center justify-between">
                 <img src={UserIcon} className="h-8" />
-                <span className="p-4 dark:text-gray-50">
-                  {userData.username}
-                </span>
+                <span className="p-4 dark:text-gray-50">{userData.value}</span>
               </button>
               <Link
                 className="flex select-none flex-row items-center sm:px-5 md:px-0"

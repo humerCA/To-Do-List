@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import About from "./Components/Pages/About";
-import Home from "./Components/Pages/Home";
+import About from "./Pages/About";
+import Home from "./Pages/Home";
 import Todo from "./Components/Main/Todo";
-import NotFound from "./Components/Pages/NotFound";
-import AuthContext from "./context/AuthContext";
-import LoginForm from "./Components/SigningOptions/LoginForm";
+import NotFound from "./Pages/NotFound";
+import AuthContext from "./Context/AuthContext";
 
 function App() {
   return (
     <AuthContext>
       <Routes>
         <Route path="/" element={<Home />} exact />
+        {/* <Route element={<PrivateRoutes />}> */}
         <Route path="/main" element={<Todo />} exact />
         <Route path="/about" element={<About />} exact>
           <Route path="company" element={<h1>Company</h1>} exact />
         </Route>
-        <Route path="*" element={<NotFound />} exact></Route>
+        {/* </Route> */}
+        <Route path="*" element={<NotFound />} exact />
       </Routes>
     </AuthContext>
   );

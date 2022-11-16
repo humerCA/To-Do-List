@@ -1,6 +1,6 @@
 import React from "react";
-import Nav from "../Nav";
-import Body from "../Body";
+import Nav from "../Components/Main/Nav";
+import Body from "../Components/Main/Body";
 
 const Home = () => {
   return (

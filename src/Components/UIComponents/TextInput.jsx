@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextBox = (props) => {
+const TextBox = React.forwardRef((props, ref) => {
   const { label, htmlFor, className, containerClass, labelClass, ...rest } =
     props;
 
@@ -8,6 +8,7 @@ const TextBox = (props) => {
     <>
       <div className="relative m-2 grow">
         <input
+          ref={ref}
           className={` ${className} peer h-10 w-full border-b-[1px] border-gray-300 bg-transparent text-gray-900 placeholder-transparent focus:border-b-[2.5px] focus:border-yellow-400 focus:outline-none dark:border-gray-500 dark:bg-transparent dark:text-gray-50 dark:focus:border-yellow-400`}
           {...rest}
         />
@@ -20,6 +21,6 @@ const TextBox = (props) => {
       </div>
     </>
   );
-};
+});
 
 export default TextBox;
