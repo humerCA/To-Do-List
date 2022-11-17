@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const Base_URL = 'http://10.10.10.4:8000/api'
+// const Base_URL = 'http://10.10.10.4:8000/api'
+const Base_URL = 'http://10.10.13.9:8080/auth'
 
-export default axios.create({
+export const usersAPI = axios.create({
     baseURL: Base_URL,
     headers: {
       'Content-Type': 'application/json',
@@ -10,15 +11,13 @@ export default axios.create({
     }
 })
 
-
-
-// usersAPI.interceptors.request.use(
-//     config => {
-//     //   const token = localStorage.getItem('token')
-//     //   if (token) {
-//     //     config.headers.Authorization = `Bearer ${token}`;
-//     //   }
-//       return config;
-//     },
-//     error => Promise.reject(error)
-//   );
+usersAPI.interceptors.request.use(
+    config => {
+      const token = localStorage.getItem('token')
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    error => Promise.reject(error)
+  );

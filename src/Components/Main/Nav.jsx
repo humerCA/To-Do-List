@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/AuthContext";
 //Signing Options
 import LoginForm from "../SigningOptions/LoginForm";
@@ -33,6 +33,16 @@ const Nav = () => {
       setDarkMode("light");
       document.documentElement.classList.remove("dark");
     }
+  };
+
+  const navLogout = useNavigate();
+  const username = localStorage.getItem("username");
+  console.log(username);
+
+  const Logout = () => {
+    localStorage.removeItem("username");
+    localStorage.removeItem("token");
+    navLogout("/");
   };
 
   return (
@@ -84,7 +94,7 @@ const Nav = () => {
             </div>
           </button>
         </div>
-        {!userData && (
+        {!username && (
           <div className="mr-10 hidden flex-col content-center items-end md:flex">
             <div className="flex flex-row items-center justify-between px-10 font-medium">
               <button
@@ -112,7 +122,7 @@ const Nav = () => {
             </div>
           </div>
         )}
-        {userData && (
+        {username && (
           <div className="mr-10 hidden flex-col content-center items-end md:flex">
             <div className="flex flex-row items-center justify-around pr-10 font-medium">
               <button
@@ -130,19 +140,17 @@ const Nav = () => {
 
               <button className="ml-10 flex flex-row items-center justify-between">
                 <img src={UserIcon} className="h-8" />
-                <span className="p-4 dark:text-gray-50">{userData.value}</span>
+                <span className="p-4 capitalize dark:text-gray-50">
+                  {username}
+                </span>
               </button>
-              <Link
-                className="flex select-none flex-row items-center sm:px-5 md:px-0"
-                to="/"
+
+              <button
+                onClick={Logout}
+                className="relative ml-5 rounded bg-yellow-400 py-1 px-4 font-bold text-gray-800 hover:bg-yellow-500 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-opacity-80 focus:ring-offset-2"
               >
-                <button
-                  className="relative ml-5 rounded bg-yellow-400 py-1 px-4 font-bold text-gray-800 hover:bg-yellow-500 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-opacity-80 focus:ring-offset-2"
-                  onClick={() => setUserData(null)}
-                >
-                  Logout
-                </button>
-              </Link>
+                Logout
+              </button>
             </div>
           </div>
         )}
@@ -155,7 +163,7 @@ const Nav = () => {
               showMenu && "top-16"
             } md:hidden`}
           >
-            {!userData && (
+            {!username && (
               <div className="align-center flex flex-col items-center justify-center text-lg font-bold">
                 <button
                   className="flex flex-row items-center justify-between py-1 px-20 uppercase dark:text-white"
@@ -171,11 +179,11 @@ const Nav = () => {
                 </button>
               </div>
             )}
-            {userData && (
+            {username && (
               <div className="flex flex-col items-center justify-center text-lg font-bold">
                 <button className="m-auto flex items-center justify-center">
-                  <span className="p-4 dark:text-gray-50">
-                    {userData.username}
+                  <span className="p-4 capitalize dark:text-gray-50">
+                    {username}
                   </span>
                 </button>
                 <Link
@@ -184,7 +192,7 @@ const Nav = () => {
                 >
                   <button
                     className="rounded-lg bg-yellow-400 py-1 px-20 font-bold text-gray-800 hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-opacity-80 focus:ring-offset-2 dark:bg-yellow-500 dark:text-gray-50 dark:hover:bg-yellow-400"
-                    onClick={() => setUserData(null)}
+                    onClick={() => Logout()}
                   >
                     Logout
                   </button>

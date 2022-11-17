@@ -1,13 +1,23 @@
 import React, { useRef, useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/AuthContext";
 
+//Images
 import TextInput from "../UIComponents/TextInput";
 import LoginImage from "../../Images/Login.png";
 
+//Hook Form
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
+//API
+import fetchData from "../../Hooks/useAxiosUsers";
+import { usersAPI } from "../../api/Users";
+import { useJwt } from "react-jwt";
+
+//JWT
+import jwtDecode from "jwt-decode";
 
 const schema = yup.object().shape({
   username: yup.string().required(),
@@ -26,10 +36,50 @@ const LoginForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  console.log(watch("username"));
+  // console.log(watch("username"));
 
-  const onSubmitHandler = (data) => {
-    console.log({ data });
+  const Login = useNavigate();
+
+  // const onSubmitHandler = async (data) => {
+  //   console.log({ data });
+  //   // await users.post("/login", data);
+  //   try {
+  //     // setLoading(true);
+  //     const result = await usersAPI.post("/login", data);
+  //     console.log(result.data);
+  //     localStorage.setItem("token", result.data.data.token);
+  //     localStorage.setItem("username", result.data.data.user.username);
+  //     Login("/main");
+  //     setShowLogin(false);
+  //   } catch (err) {
+  //     console.log(err.message);
+  //     setError(err.message);
+  //   } finally {
+  //     // setLoading(false);
+  //   }
+  //   reset();
+  // };
+
+  const onSubmitHandler = async (data) => {
+    // await users.post("/login", data);
+    try {
+      // setLoading(true);
+      const result = await usersAPI.post("/login", data);
+      const token = jwtDecode(result.data.token);
+      console.log(token);
+      const newObj = {
+        username: token.first_name,
+      };
+      // console.log(result);
+      localStorage.setItem("username", token.first_name);
+      Login("/main");
+      setShowLogin(false);
+    } catch (err) {
+      console.log(err.message);
+      setError(err.message);
+    } finally {
+      // setLoading(false);
+    }
     reset();
   };
 
@@ -82,43 +132,49 @@ const LoginForm = () => {
             <span className="flex justify-center p-6 text-3xl font-bold text-blue-500">
               LOG IN
             </span>
-            <p>
-              {errors.username &&
-                errors.password &&
-                "Username or Password is not valid!"}
-            </p>
-            <TextInput
-              {...register("username")}
-              autoComplete="off"
-              type="text"
-              label="Username"
-              htmlFor="username"
-              placeholder="Username"
-            />
-            {/* {errorUser != "" && (
-              <div className="text-red-600 ">{errorUser}</div>
-            )} */}
-            <TextInput
-              {...register("password")}
-              autoComplete="off"
-              type="password"
-              label="Password"
-              htmlFor="password"
-              placeholder="Password"
-            />
-            {/* {errorPass != "" && (
-              <div className="text-red-600 ">{errorPass}</div>
-            )} */}
-            {/* <Link to={{ pathname: "/main", state: { from: userData } }}> */}
+            {/* <p>{errors.username?.message && "Username is not valid!"}</p> */}
+            {errors.username && errors.password ? (
+              <p>Username or Password is Invalid</p>
+            ) : null}
+            <div className="mb-5">
+              <TextInput
+                {...register("username")}
+                autoComplete="off"
+                type="text"
+                label="Username"
+                htmlFor="username"
+                placeholder="Username"
+              />
+              <p className="-mt-2 ml-2 mb-5 text-xs text-red-500">
+                {errors.username?.message}
+              </p>
+            </div>
+            <div>
+              <TextInput
+                {...register("password")}
+                autoComplete="off"
+                type="password"
+                label="Password"
+                htmlFor="password"
+                placeholder="Password"
+              />
+              <p className="-mt-2 ml-2 mb-5 text-xs text-red-500">
+                {errors.password?.message}
+              </p>
+            </div>
+
             <button
+              disabled={
+                (errors.password ? true : false) ||
+                (errors.username ? true : false)
+              }
               type="submit"
               placeholder="Submit"
               name="submit"
-              className="mt-5 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2"
+              className="mt-5 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2 disabled:bg-gray-500"
             >
               Login
             </button>
-            {/* </Link> */}
           </div>
         </form>
       </div>
