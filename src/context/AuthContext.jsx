@@ -6,7 +6,7 @@ const AuthContext = ({ children }) => {
   const [showSignUp, setSignUp] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   return (
     <UserContext.Provider
       value={{
@@ -18,6 +18,8 @@ const AuthContext = ({ children }) => {
         setShowLogin,
         showMenu,
         setShowMenu,
+        loading,
+        setLoading,
       }}
     >
       {children}

@@ -15,8 +15,8 @@ const schema = yup.object().shape({
 });
 
 const SignUp = () => {
-  const { setSignUp } = useContext(UserContext);
-
+  const { showSignUp, setSignUp, loading, setLoading } =
+    useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -40,7 +40,7 @@ const SignUp = () => {
           <button
             type="button"
             className="absolute z-50 flex flex-row justify-end px-5 py-3 text-lg font-bold text-black dark:text-gray-50"
-            onClick={() => setSignUp(false)}
+            onClick={() => setSignUp(!showSignUp)}
           >
             X
           </button>
@@ -62,7 +62,7 @@ const SignUp = () => {
               SIGN UP
             </span>
             <form onSubmit={handleSubmit(onSubmitHandler)}>
-              <div className="mb-5">
+              <div className="mb-8">
                 <TextInput
                   {...register("username")}
                   autoComplete="off"
@@ -75,7 +75,7 @@ const SignUp = () => {
                   {errors.username?.message}
                 </p>
               </div>
-              <div className="mb-5">
+              <div className="mb-8">
                 <TextInput
                   {...register("password")}
                   type="password"
@@ -87,7 +87,7 @@ const SignUp = () => {
                   {errors.password?.message}
                 </p>
               </div>
-              <div className="mb-5">
+              <div className="mb-8">
                 <TextInput
                   {...register("confirmPassword")}
                   type="password"
@@ -99,7 +99,7 @@ const SignUp = () => {
                   {errors.confirmPassword && "Passwords do not match!"}
                 </p>
               </div>
-              <div className="mb-5">
+              <div className="mb-8">
                 <TextInput
                   {...register("email")}
                   autoComplete="off"
@@ -113,10 +113,24 @@ const SignUp = () => {
                 </p>
               </div>
               <button
+                disabled={
+                  (errors.password ? true : false) ||
+                  (errors.username ? true : false) ||
+                  (errors.confirmPassword ? true : false) ||
+                  (errors.email ? true : false) ||
+                  watch("username") === undefined ||
+                  watch("password") === undefined ||
+                  watch("confirmPassword") === undefined ||
+                  watch("email") === undefined ||
+                  watch("username") === "" ||
+                  watch("password") === "" ||
+                  watch("confirmPassword") === "" ||
+                  watch("email") === ""
+                }
                 type="submit"
                 placeholder="Submit"
                 name="submit"
-                className=" mt-10 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2"
+                className=" mt-10 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2 disabled:pointer-events-none disabled:bg-gray-500"
               >
                 Submit
               </button>

@@ -13,8 +13,6 @@ import Night from "../../Images/Night.png";
 
 const Nav = () => {
   const {
-    userData,
-    setUserData,
     darkMode,
     setDarkMode,
     showSignUp,
@@ -37,7 +35,7 @@ const Nav = () => {
 
   const navLogout = useNavigate();
   const username = localStorage.getItem("username");
-  console.log(username);
+  // console.log(username);
 
   const Logout = () => {
     localStorage.removeItem("username");
@@ -47,11 +45,11 @@ const Nav = () => {
 
   return (
     <>
-      <nav className="relative z-30 flex h-16 select-none flex-row items-center justify-between bg-white p-3 shadow-md dark:bg-gray-800 dark:shadow-md">
+      <nav className="relative z-30 flex h-16 select-none flex-row items-center justify-between bg-white p-3 shadow-md dark:bg-gray-800 dark:shadow-md sm:bg-yellow-200 md:bg-blue-200 lg:bg-green-200">
         <div className="ml-10 justify-between sm:ml-5 md:ml-20">
           <Link
             className="flex select-none flex-row items-center sm:px-5 md:px-0"
-            to={userData && "/"}
+            to={username && "/"}
           >
             <img src={TodoListIcon} className="h-9" />
             <span className="ml-3 text-lg font-black uppercase dark:text-gray-50 sm:text-xl">
@@ -59,23 +57,6 @@ const Nav = () => {
             </span>
           </Link>
         </div>
-        {/* Switch Button */}
-        {/* <div className="align-center flex justify-around">
-          <label
-            htmlFor="darkMode"
-            class="relative inline-flex cursor-pointer items-center"
-          >
-            <input
-              onClick={handleSwitch}
-              type="checkbox"
-              value=""
-              id="darkMode"
-              class="peer sr-only"
-            />
-            <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-gray-800"></div>
-            <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
-          </label>
-        </div> */}
         <div className="flex flex-row justify-between ">
           <button
             className="mt-1 mr-5 max-h-8 rounded-full bg-gradient-to-tr from-neutral-300 to-neutral-200 p-2 text-xl text-white dark:bg-white dark:from-neutral-700 dark:to-neutral-400 md:hidden"
@@ -98,24 +79,31 @@ const Nav = () => {
           <div className="mr-10 hidden flex-col content-center items-end md:flex">
             <div className="flex flex-row items-center justify-between px-10 font-medium">
               <button
-                className="mr-10 justify-end rounded-full bg-gradient-to-tr from-neutral-300 to-neutral-200 p-2 text-xl text-white dark:bg-white dark:from-neutral-700 dark:to-neutral-400"
+                className="text-md mr-10 flex justify-center rounded-full bg-gradient-to-tr from-neutral-100 to-neutral-300 px-4 py-1 align-middle text-gray-800 dark:bg-white dark:from-neutral-700 dark:to-neutral-400 dark:text-gray-100 md:p-2 lg:px-3"
                 onClick={handleSwitch}
               >
                 <img
                   src={darkMode === "light" ? Night : Light}
-                  className="h-4"
+                  className="align-center m-auto h-4"
                 />
+                <span className="ml-2 hidden lg:flex">
+                  {darkMode === "light" ? "Dark Mode" : "Light Mode"}
+                </span>
               </button>
               <button
                 className="flex flex-row items-center justify-between"
-                onClick={() => setShowLogin(!showLogin)}
+                onClick={() => {
+                  setShowLogin(!showLogin);
+                }}
               >
                 <img src={UserIcon} className="h-8" />
                 <span className="p-4 dark:text-gray-50">Login</span>
               </button>
               <button
                 className="relative ml-5 rounded bg-yellow-400 py-1 px-4 font-bold text-gray-800 hover:bg-yellow-500 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-opacity-80 focus:ring-offset-2"
-                onClick={() => setSignUp(true)}
+                onClick={() => {
+                  setSignUp(true);
+                }}
               >
                 Sign up
               </button>
