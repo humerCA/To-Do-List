@@ -1,0 +1,9 @@
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setInput((prevInput) => {
+  //     return {
+  //       ...prevInput,
+  //       [name]: value,
+  //     };
+  //   });
+  // };

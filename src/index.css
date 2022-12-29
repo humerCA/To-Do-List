@@ -11,3 +11,16 @@
     user-select: none;
   }
 }
+
+.Urgent {
+  @apply bg-red-700;
+}
+.High {
+  @apply bg-red-400;
+}
+.Moderate {
+  @apply bg-indigo-400;
+}
+.Low {
+  @apply bg-amber-200;
+}

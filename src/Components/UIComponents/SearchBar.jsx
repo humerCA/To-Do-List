@@ -10,7 +10,7 @@ const SearchBar = () => {
         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-[51px]">
           <svg
             aria-hidden="true"
-            className="h-5 w-5 text-gray-500 dark:text-gray-400"
+            className="h-5 w-5 text-slate-500 dark:text-slate-400"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@ const SearchBar = () => {
         <input
           type="text"
           id="simple-search"
-          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-800 focus:border-blue-500 focus:ring-4 focus:ring-blue-500 dark:text-gray-800 "
+          className="block w-full rounded-lg border border-slate-300 bg-slate-50 p-2.5 pl-10 text-sm text-slate-800 focus:border-blue-500 focus:ring-4 focus:ring-blue-500 dark:text-slate-800 "
           placeholder="Search"
           required
         />

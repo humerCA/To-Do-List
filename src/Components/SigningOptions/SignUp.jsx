@@ -35,11 +35,11 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="absolute inset-0 z-50 m-0 box-border flex select-none justify-center bg-gray-800 bg-opacity-70 ">
+      <div className="absolute inset-0 z-50 m-0 box-border flex select-none justify-center bg-slate-800 bg-opacity-70 ">
         <div className="z-30 m-auto flex flex-row justify-end">
           <button
             type="button"
-            className="absolute z-50 flex flex-row justify-end px-5 py-3 text-lg font-bold text-black dark:text-gray-50"
+            className="absolute z-50 flex flex-row justify-end px-5 py-3 text-lg font-bold text-black dark:text-slate-50"
             onClick={() => setSignUp(!showSignUp)}
           >
             X
@@ -48,13 +48,13 @@ const SignUp = () => {
             <img
               src={SignUpImage}
               alt="SignUp image"
-              className="z-0 ml-2 hidden h-full w-full rounded-md bg-white bg-auto object-cover p-2 dark:bg-gray-600 md:flex md:object-cover"
+              className="z-0 ml-2 hidden h-full w-full rounded-md bg-white bg-auto object-cover p-2 dark:bg-slate-600 md:flex md:object-cover"
             />
           </div>
-          <div className="z-30 m-0 flex flex-col rounded-lg bg-white px-20 py-10 shadow-sm dark:bg-gray-600 sm:px-20 md:px-14 ">
+          <div className="z-30 m-0 flex flex-col rounded-lg bg-white px-20 py-10 shadow-sm dark:bg-slate-600 sm:px-20 md:px-14 ">
             <div className="relative m-auto flex flex-row items-center justify-center">
               <img src={TodoListIcon} className="h-8 w-8" />
-              <span className="pl-2 text-xl font-black uppercase dark:text-gray-50">
+              <span className="pl-2 text-xl font-black uppercase dark:text-slate-50">
                 To-Do List
               </span>
             </div>
@@ -130,7 +130,7 @@ const SignUp = () => {
                 type="submit"
                 placeholder="Submit"
                 name="submit"
-                className=" mt-10 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2 disabled:pointer-events-none disabled:bg-gray-500"
+                className=" mt-10 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2 disabled:pointer-events-none disabled:bg-slate-500"
               >
                 Submit
               </button>

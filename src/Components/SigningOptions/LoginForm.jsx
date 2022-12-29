@@ -14,9 +14,9 @@ import * as yup from "yup";
 //API
 import fetchData from "../../Hooks/useAxiosUsers";
 import { usersAPI } from "../../api/Users";
-import { useJwt } from "react-jwt";
 
 //JWT
+import { useJwt } from "react-jwt";
 import jwtDecode from "jwt-decode";
 
 const schema = yup.object().shape({
@@ -41,6 +41,7 @@ const LoginForm = () => {
 
   const Login = useNavigate();
 
+  // Axios
   // const onSubmitHandler = async (data) => {
   //   console.log({ data });
   //   // await users.post("/login", data);
@@ -61,39 +62,60 @@ const LoginForm = () => {
   //   reset();
   // };
 
+  // MockAPI
   const onSubmitHandler = async (data) => {
-    setLoading(true);
+    console.log({ data });
     try {
-      const result = await usersAPI.post("/login", data);
-      const token = jwtDecode(result.data.token);
-      console.log(token);
-      // console.log(result);
-
-      localStorage.setItem("username", token.first_name);
+      // setLoading(true);
+      const result = await usersAPI.post("/UserLogin", data);
+      console.log(result.data);
+      localStorage.setItem("token", result.data.token);
+      localStorage.setItem("username", result.data.username);
       Login("/main");
       setShowLogin(false);
     } catch (err) {
       console.log(err.message);
-      setError(err.message);
+      // setError(err.message);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
-
     reset();
   };
+
+  // JWT axios
+  // const onSubmitHandler = async (data) => {
+  //   setLoading(true);
+  //   try {
+  //     const result = await usersAPI.post("/login", data);
+  //     const token = jwtDecode(result.data.token);
+  //     console.log(token);
+  //     // console.log(result);
+
+  //     localStorage.setItem("username", token.first_name);
+  //     Login("/main");
+  //     setShowLogin(false);
+  //   } catch (err) {
+  //     console.log(err.message);
+  //     // setError(err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+
+  //   reset();
+  // };
 
   useEffect(() => {}, []);
 
   return (
     <>
-      <div className="absolute inset-0 z-50 m-auto box-border flex select-none justify-center bg-gray-800 bg-opacity-70 ">
+      <div className="absolute inset-0 z-50 m-auto box-border flex select-none justify-center bg-slate-800 bg-opacity-70 ">
         <form
           onSubmit={handleSubmit(onSubmitHandler)}
           className="relative m-auto flex flex-row justify-end"
         >
           <button
             type="button"
-            className="absolute z-30 flex flex-row justify-end px-5 py-3 text-lg font-bold text-black dark:text-gray-50"
+            className="absolute z-30 flex flex-row justify-end px-5 py-3 text-lg font-bold text-black dark:text-slate-50"
             onClick={() => {
               setShowLogin(false);
             }}
@@ -114,7 +136,7 @@ const LoginForm = () => {
             <img
               src={LoginImage}
               alt="SignUp image"
-              className="relative -right-2 hidden h-full w-full rounded-lg bg-white bg-auto shadow-sm dark:bg-gray-600 md:flex md:object-contain md:px-14"
+              className="relative -right-2 hidden h-full w-full rounded-lg bg-white bg-auto shadow-sm dark:bg-slate-600 md:flex md:object-contain md:px-14"
             />
             <svg
               className="absolute left-2 bottom-0 z-10 max-w-md object-contain p-1 "
@@ -127,9 +149,9 @@ const LoginForm = () => {
               ></path>
             </svg>
           </div>
-          <div className="z-20 m-auto flex flex-col rounded-md bg-white py-20 px-20 shadow-md dark:bg-gray-600 sm:px-24 md:px-16">
+          <div className="z-20 m-auto flex flex-col rounded-md bg-white py-20 px-20 shadow-md dark:bg-slate-600 sm:px-24 md:px-16">
             <div className="relative m-auto flex flex-row items-center justify-center"></div>
-            <span className="mt-0 flex justify-center px-6 text-xl font-bold text-black dark:text-gray-50">
+            <span className="mt-0 flex justify-center px-6 text-xl font-bold text-black dark:text-slate-50">
               Welcome Back!
             </span>
             <span className="flex justify-center p-6 text-3xl font-bold text-blue-500">
@@ -174,7 +196,7 @@ const LoginForm = () => {
                 type="submit"
                 placeholder="Submit"
                 name="submit"
-                className="mt-5 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2 disabled:pointer-events-none disabled:bg-gray-500"
+                className="mt-5 block w-full cursor-pointer rounded bg-rose-500 px-4 py-2 text-center font-semibold text-white hover:bg-rose-400 focus:outline-none focus:ring focus:ring-rose-500 focus:ring-opacity-80 focus:ring-offset-2 disabled:pointer-events-none disabled:bg-slate-500"
               >
                 Login
               </button>
@@ -188,7 +210,7 @@ const LoginForm = () => {
               >
                 <svg
                   role="status"
-                  className="mr-2 inline h-4 w-4 animate-spin text-gray-200"
+                  className="mr-2 inline h-4 w-4 animate-spin text-slate-200"
                   viewBox="0 0 100 101"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
