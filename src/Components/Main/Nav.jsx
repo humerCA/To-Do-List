@@ -45,14 +45,14 @@ const Nav = () => {
 
   return (
     <>
-      <nav className="relative z-30 flex h-16 select-none flex-row items-center justify-between bg-white p-3 shadow-md dark:bg-slate-800 dark:shadow-md">
+      <nav className="relative z-30 flex h-16 select-none flex-row items-center justify-between bg-white p-3 shadow-md dark:bg-slate-900 dark:shadow-md">
         <div className="ml-10 justify-between sm:ml-5 md:ml-20">
           <div
             className="flex select-none flex-row items-center sm:px-5 md:px-0"
             to={username && "/"}
           >
             <img src={TodoListIcon} className="h-9" />
-            <span className="ml-3 text-lg font-black uppercase dark:text-slate-50 sm:text-xl">
+            <span className="text-lg font-black uppercase dark:text-slate-50 sm:ml-3 sm:text-xl">
               To-Do List
             </span>
           </div>
@@ -126,12 +126,15 @@ const Nav = () => {
                 </span>
               </button>
 
-              <button className="ml-10 flex flex-row items-center justify-between">
+              <Link
+                to="/main"
+                className="ml-10 flex flex-row items-center justify-between"
+              >
                 <img src={UserIcon} className="h-8" />
                 <span className="p-4 capitalize dark:text-slate-50">
                   {username}
                 </span>
-              </button>
+              </Link>
 
               <button
                 onClick={Logout}

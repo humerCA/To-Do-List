@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/AuthContext";
 
@@ -12,12 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 //API
-import fetchData from "../../Hooks/useAxiosUsers";
 import { usersAPI } from "../../api/Users";
-
-//JWT
-import { useJwt } from "react-jwt";
-import jwtDecode from "jwt-decode";
 
 const schema = yup.object().shape({
   username: yup.string().required(),
@@ -41,27 +36,6 @@ const LoginForm = () => {
 
   const Login = useNavigate();
 
-  // Axios
-  // const onSubmitHandler = async (data) => {
-  //   console.log({ data });
-  //   // await users.post("/login", data);
-  //   try {
-  //     // setLoading(true);
-  //     const result = await usersAPI.post("/login", data);
-  //     console.log(result.data);
-  //     localStorage.setItem("token", result.data.data.token);
-  //     localStorage.setItem("username", result.data.data.user.username);
-  //     Login("/main");
-  //     setShowLogin(false);
-  //   } catch (err) {
-  //     console.log(err.message);
-  //     setError(err.message);
-  //   } finally {
-  //     // setLoading(false);
-  //   }
-  //   reset();
-  // };
-
   // MockAPI
   const onSubmitHandler = async (data) => {
     console.log({ data });
@@ -81,28 +55,6 @@ const LoginForm = () => {
     }
     reset();
   };
-
-  // JWT axios
-  // const onSubmitHandler = async (data) => {
-  //   setLoading(true);
-  //   try {
-  //     const result = await usersAPI.post("/login", data);
-  //     const token = jwtDecode(result.data.token);
-  //     console.log(token);
-  //     // console.log(result);
-
-  //     localStorage.setItem("username", token.first_name);
-  //     Login("/main");
-  //     setShowLogin(false);
-  //   } catch (err) {
-  //     console.log(err.message);
-  //     // setError(err.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-
-  //   reset();
-  // };
 
   useEffect(() => {}, []);
 
